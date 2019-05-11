@@ -43,9 +43,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Uygulama sesinizi anlamlandirabilmek icin bu izne ihtiyac duyar.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Mikrofon izni.</string>
+    <key>NSMicrophoneUsageDescription</key>  <string>Your microphone will be used to record your speech when you press the "Start Recording" button.</string>
+    
+    <key>NSSpeechRecognitionUsageDescription</key>  <string>Speech recognition will be used to deter</string>
 </dict>
 </plist>
