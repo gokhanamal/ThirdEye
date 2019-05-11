@@ -118,7 +118,7 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     }
     
     func stopRecording () {
-        lastString = textView.text!
+        self.lastString = textView.text!
         audioEngine.stop()
         recognitionRequest?.endAudio()
         microphoneButton.isEnabled = false
@@ -171,10 +171,12 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                     timer.invalidate()
                     self.stopRecording()
                     do {
-                        try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                        try audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
                     } catch {
                         print("audioSession properties weren't set because of an error.")
                     }
+                    let speakText = "I am looking for a " + (result?.bestTranscription.formattedString)!
+                    self.speak(name: speakText)
                 })
             }
             
@@ -276,7 +278,9 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 let name: String = classNames[prediction.detectedClass]
                 let textLabel = String(format: "%.2f - %@", self.sigmoid(prediction.score), name)
                 
-                self.speak(name: name)
+                if name == self.lastString.lowercased() {
+                    self.speak(name: "I found the " + name)
+                }
                 
                 textColor = UIColor.black
                 let rect = prediction.finalPrediction.toCGRect(imgWidth: self.screenWidth!, imgHeight: self.screenWidth!, xOffset: 0, yOffset: (self.screenHeight! - self.screenWidth!)/2)
@@ -295,7 +299,6 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
-
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
