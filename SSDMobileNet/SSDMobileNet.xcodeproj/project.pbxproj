@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15E7430422882BB500C6CEBA /* rgb.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15E7430322882BB500C6CEBA /* rgb.txt */; };
 		46A3830A2019175C0097FA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A383092019175C0097FA36 /* AppDelegate.swift */; };
 		46A383112019175C0097FA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46A383102019175C0097FA36 /* Assets.xcassets */; };
 		46A383142019175C0097FA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46A383122019175C0097FA36 /* LaunchScreen.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15E7430322882BB500C6CEBA /* rgb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rgb.txt; path = ../../../rgb.txt; sourceTree = "<group>"; };
 		46A383062019175C0097FA36 /* SSDMobileNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSDMobileNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A383092019175C0097FA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46A383102019175C0097FA36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		46A383082019175C0097FA36 /* SSDMobileNet */ = {
 			isa = PBXGroup;
 			children = (
+				15E7430322882BB500C6CEBA /* rgb.txt */,
 				46A3831B201917DA0097FA36 /* CoreMLHelpers */,
 				46A383092019175C0097FA36 /* AppDelegate.swift */,
 				46A38322201917DA0097FA36 /* SSDPostprocessor.swift */,
@@ -175,6 +178,7 @@
 			files = (
 				46A383142019175C0097FA36 /* LaunchScreen.storyboard in Resources */,
 				46A38339201918290097FA36 /* Main.storyboard in Resources */,
+				15E7430422882BB500C6CEBA /* rgb.txt in Resources */,
 				46A383112019175C0097FA36 /* Assets.xcassets in Resources */,
 				46A38330201917DA0097FA36 /* coco_labels_list.txt in Resources */,
 			);
@@ -331,10 +335,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGDJ95X9WY;
+				DEVELOPMENT_TEAM = KLG734RE3M;
 				INFOPLIST_FILE = SSDMobileNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vonholst.SSDMob213123123ileNetg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vonholst.SSDMob2123123123ileNetg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -346,10 +350,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGDJ95X9WY;
+				DEVELOPMENT_TEAM = KLG734RE3M;
 				INFOPLIST_FILE = SSDMobileNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vonholst.SSDMob213123123ileNetg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vonholst.SSDMob2123123123ileNetg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

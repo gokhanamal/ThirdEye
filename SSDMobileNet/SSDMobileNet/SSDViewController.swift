@@ -13,6 +13,9 @@ import AVFoundation
 import Accelerate
 import Speech
 
+let WIDTH = UIScreen.main.bounds.width
+let HEIGHT = UIScreen.main.bounds.height
+
 class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate,SFSpeechRecognizerDelegate {
     
     @IBOutlet weak var cameraView: UIView!
@@ -27,6 +30,9 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     var visionModel:VNCoreMLModel?
     var lastString = ""
     var detectionTimer : Timer?
+    let previewLayer = CALayer()
+    let lineShape = CAShapeLayer()
+    var center: CGPoint = CGPoint(x: WIDTH/2-15, y: WIDTH/2-15)
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "tr-TR"))  //1
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -56,9 +62,13 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         self.cameraView?.layer.addSublayer(self.cameraLayer)
         self.cameraView?.bringSubview(toFront: self.textView)
         let videoOutput = AVCaptureVideoDataOutput()
+        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey:Int(kCVPixelFormatType_32BGRA)] as [String : Any]
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "MyQueue"))
         self.captureSession.addOutput(videoOutput)
         self.captureSession.startRunning()
+        
+        setupUI()
+        
         setupVision()
         
         setupBoxes()
@@ -277,15 +287,36 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 print("Class: \(classNames[prediction.detectedClass])")
                 
                 let textColor: UIColor
-                let name: String = classNames[prediction.detectedClass]
+                var name: String = classNames[prediction.detectedClass]
                 let textLabel = String(format: "%.2f - %@", self.sigmoid(prediction.score), name)
                 
-                if name == self.lastString.lowercased() {
-                    self.speak(name: "Bir " + name + " buldum.")
-                }
                 
                 textColor = UIColor.black
                 let rect = prediction.finalPrediction.toCGRect(imgWidth: self.screenWidth!, imgHeight: self.screenWidth!, xOffset: 0, yOffset: (self.screenHeight! - self.screenWidth!)/2)
+
+                
+                if name == self.lastString.lowercased() {
+                    if name.contains("renk") {
+                        self.speak(name: "Renkleri arıyorum")
+                        let r,g,b = self.previewLayer.pickColor(at: self.center)
+                        let color = whichColor(r: r, g: g, b: b);
+                        self.speak(name: color);
+                    } else {
+                        let halfHieght = HEIGHT/2
+                        let halfWidth = WIDTH/2
+                        print(halfWidth, halfHieght);
+                        print(rect.midX, rect.midY)
+                        if (rect.midX - halfWidth < 10 && rect.midX - halfWidth > -10 ) || (rect.midY - halfHieght < 10 && rect.midY - halfHieght > -10) {
+                            self.speak(name: "Bir " + name + " buldum. Ortada")
+                        } else if rect.midX < halfWidth {
+                            self.speak(name: "Bir " + name + " buldum. Solda")
+                        } else if rect.midX > halfWidth {
+                            self.speak(name: "Bir " + name + " buldum. Sağda")
+                        }
+                    }
+                    
+                }
+        
                 self.boundingBoxes[index].show(frame: rect,
                                                label: textLabel,
                                                color: UIColor.red, textColor: textColor)
@@ -307,6 +338,33 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
+        
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
+        guard let baseAddr = CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0) else {
+            return
+        }
+        let width = CVPixelBufferGetWidthOfPlane(imageBuffer, 0)
+        let height = CVPixelBufferGetHeightOfPlane(imageBuffer, 0)
+        let bytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, 0)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bimapInfo: CGBitmapInfo = [
+            .byteOrder32Little,
+            CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)]
+        
+        guard let content = CGContext(data: baseAddr, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bimapInfo.rawValue) else {
+            return
+        }
+        
+        guard let cgImage = content.makeImage() else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.previewLayer.contents = cgImage        }
+        
         guard let visionModel = self.visionModel else {
             return
         }
@@ -415,5 +473,111 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
             return .rightTop
         }
     }
+    
+    func setupUI() {
+        previewLayer.bounds = CGRect(x: 0, y: 0, width: WIDTH-30, height: WIDTH-30)
+        previewLayer.position = view.center
+        previewLayer.contentsGravity = kCAGravityResizeAspectFill
+        previewLayer.masksToBounds = true
+        previewLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)))
+        self.cameraView?.layer.insertSublayer(previewLayer, at: 0)
+        //圆环
+        let linePath = UIBezierPath.init(ovalIn: CGRect.init(x: 0, y: 0, width: 40, height: 40))
+        lineShape.frame = CGRect.init(x: WIDTH/2-20, y:HEIGHT/2-20, width: 40, height: 40)
+        lineShape.lineWidth = 5
+        lineShape.strokeColor = UIColor.red.cgColor
+        lineShape.path = linePath.cgPath
+        lineShape.fillColor = UIColor.clear.cgColor
+       self.cameraView?.layer.insertSublayer(lineShape, at: 1)
+        
+        //圆点
+        let linePath1 = UIBezierPath.init(ovalIn: CGRect.init(x: 0, y: 0, width: 8, height: 8))
+        let lineShape1 = CAShapeLayer()
+        lineShape1.frame = CGRect.init(x: WIDTH/2-4, y:HEIGHT/2-4, width: 8, height: 8)
+        lineShape1.path = linePath1.cgPath
+        lineShape1.fillColor = UIColor.init(white: 0.7, alpha: 0.5).cgColor
+        self.cameraView?.layer.insertSublayer(lineShape1, at: 1)
+    }
+    
+    func whichColor(r: CGFloat,g: CGFloat,b: CGFloat) {
+        print(r,b,g)
+        if r >= b && g >= b {
+            print("1")
+            if r > b {
+                self.speak(name: "Beyaz")
+            } else if r < b {
+                self.speak(name: "yesil")
+            } else if r == b {
+                self.speak(name: "kahverengi")
+            }
+        } else if r <= b && g <= b {
+            self.speak(name: "mavi")
+        } else if r >= g && b >= g {
+            if r > b {
+                self.speak(name: "bordo")
+            } else if r < b {
+                self.speak(name: "lacivert")
+            } else if r == b {
+                self.speak(name: "mor")
+            }
+        } else if r <= g && b <= g {
+            if r > b {
+                self.speak(name: "sari")
+            } else if r < b {
+                self.speak(name: "acik yesil")
+            } else if r == b {
+                self.speak(name: "yesil")
+            }
+        } else if g >= r && b >= r {
+            if g > b {
+                self.speak(name: "koyu yesil")
+            } else if g < b {
+                self.speak(name: "mavi")
+            } else if b == g {
+                self.speak(name: "turkuaz")
+            }
+        } else if g <= r && b <= r {
+            print("2")
+            if g > b {
+                self.speak(name: "turuncu")
+            } else if g < b {
+                self.speak(name: "pembe")
+            } else if g == b {
+                self.speak(name: "kahverengi")
+            }
+        }
+    }
+    
 }
 
+public extension CALayer {
+    
+    /// 获取特定位置的颜色
+    ///
+    /// - parameter at: 位置
+    ///
+    /// - returns: 颜色
+    public func pickColor(at position: CGPoint) -> (r: CGFloat, g: CGFloat, b: CGFloat) {
+        
+        // 用来存放目标像素值
+        var pixel = [UInt8](repeatElement(0, count: 4))
+        // 颜色空间为 RGB，这决定了输出颜色的编码是 RGB 还是其他（比如 YUV）
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        // 设置位图颜色分布为 RGBA
+        let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue
+        guard let context = CGContext(data: &pixel, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo) else {
+            return (r: 0.0, g: 0.0, b: 0.0)
+        }
+        // 设置 context 原点偏移为目标位置所有坐标
+        context.translateBy(x: -position.x, y: -position.y)
+        // 将图像渲染到 context 中
+        render(in: context)
+        let red = CGFloat(pixel[0]);
+        let green = CGFloat(pixel[1])
+        let blue = CGFloat(pixel[2])
+        //whichColor(r: red, g: green, b: blue)
+        return (r: red, g: green, b: blue)
+    }
+    
+    
+}
