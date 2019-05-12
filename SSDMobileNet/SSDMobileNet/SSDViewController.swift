@@ -28,7 +28,7 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     var lastString = ""
     var detectionTimer : Timer?
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))  //1
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "tr-TR"))  //1
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
@@ -95,6 +95,8 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 self.microphoneButton.isEnabled = isButtonEnabled
             }
         }
+        
+        self.speak(name: "Ne aramak istersin?")
     }
 
     @IBAction func microphoneTapped(_ sender: Any) {
@@ -175,7 +177,7 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                     } catch {
                         print("audioSession properties weren't set because of an error.")
                     }
-                    let speakText = "I am looking for a " + (result?.bestTranscription.formattedString)!
+                    let speakText = "Bir" + (result?.bestTranscription.formattedString)! + "arıyorum."
                     self.speak(name: speakText)
                 })
             }
@@ -206,7 +208,7 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
             print("audioEngine couldn't start because of an error.")
         }
         
-        textView.text = "Say something, I'm listening!"
+        textView.text = "Bir şey söyle, dinliyorum!"
         
     }
     
@@ -279,7 +281,7 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
                 let textLabel = String(format: "%.2f - %@", self.sigmoid(prediction.score), name)
                 
                 if name == self.lastString.lowercased() {
-                    self.speak(name: "I found the " + name)
+                    self.speak(name: "Bir " + name + " buldum.")
                 }
                 
                 textColor = UIColor.black
@@ -296,7 +298,7 @@ class SSDViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     
     func speak(name: String){
         let utterance = AVSpeechUtterance(string: name)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.voice = AVSpeechSynthesisVoice(language: "tr-TR")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
     }
