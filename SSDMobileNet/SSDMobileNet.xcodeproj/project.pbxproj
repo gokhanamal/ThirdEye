@@ -17,14 +17,14 @@
 		46A3832B201917DA0097FA36 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A3831F201917DA0097FA36 /* Array.swift */; };
 		46A3832C201917DA0097FA36 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38320201917DA0097FA36 /* BoundingBox.swift */; };
 		46A3832D201917DA0097FA36 /* Predictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38321201917DA0097FA36 /* Predictions.swift */; };
-		46A3832E201917DA0097FA36 /* SSDPostprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38322201917DA0097FA36 /* SSDPostprocessor.swift */; };
+		46A3832E201917DA0097FA36 /* Postprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38322201917DA0097FA36 /* Postprocessor.swift */; };
 		46A3832F201917DA0097FA36 /* MultiArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38323201917DA0097FA36 /* MultiArray.swift */; };
 		46A38330201917DA0097FA36 /* coco_labels_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = 46A38324201917DA0097FA36 /* coco_labels_list.txt */; };
 		46A38331201917DA0097FA36 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38325201917DA0097FA36 /* CVPixelBuffer+Helpers.swift */; };
 		46A38332201917DA0097FA36 /* NonMaxSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38326201917DA0097FA36 /* NonMaxSuppression.swift */; };
 		46A38333201917DA0097FA36 /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A38327201917DA0097FA36 /* MLMultiArray+Image.swift */; };
 		46A38335201917FB0097FA36 /* ssd_mobilenet_feature_extractor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 46A38334201917FB0097FA36 /* ssd_mobilenet_feature_extractor.mlmodel */; };
-		46A383372019180B0097FA36 /* SSDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A383362019180B0097FA36 /* SSDViewController.swift */; };
+		46A383372019180B0097FA36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A383362019180B0097FA36 /* ViewController.swift */; };
 		46A38339201918290097FA36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46A38338201918290097FA36 /* Main.storyboard */; };
 		46A3833B201918780097FA36 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A3833A201918780097FA36 /* Utility.swift */; };
 /* End PBXBuildFile section */
@@ -42,14 +42,14 @@
 		46A3831F201917DA0097FA36 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		46A38320201917DA0097FA36 /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
 		46A38321201917DA0097FA36 /* Predictions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Predictions.swift; sourceTree = "<group>"; };
-		46A38322201917DA0097FA36 /* SSDPostprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSDPostprocessor.swift; sourceTree = "<group>"; };
+		46A38322201917DA0097FA36 /* Postprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Postprocessor.swift; sourceTree = "<group>"; };
 		46A38323201917DA0097FA36 /* MultiArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiArray.swift; sourceTree = "<group>"; };
 		46A38324201917DA0097FA36 /* coco_labels_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coco_labels_list.txt; sourceTree = "<group>"; };
 		46A38325201917DA0097FA36 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
 		46A38326201917DA0097FA36 /* NonMaxSuppression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonMaxSuppression.swift; sourceTree = "<group>"; };
 		46A38327201917DA0097FA36 /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Image.swift"; sourceTree = "<group>"; };
 		46A38334201917FB0097FA36 /* ssd_mobilenet_feature_extractor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ssd_mobilenet_feature_extractor.mlmodel; sourceTree = "<group>"; };
-		46A383362019180B0097FA36 /* SSDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSDViewController.swift; sourceTree = "<group>"; };
+		46A383362019180B0097FA36 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		46A38338201918290097FA36 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		46A3833A201918780097FA36 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,10 +87,10 @@
 				15E7430322882BB500C6CEBA /* rgb.txt */,
 				46A3831B201917DA0097FA36 /* CoreMLHelpers */,
 				46A383092019175C0097FA36 /* AppDelegate.swift */,
-				46A38322201917DA0097FA36 /* SSDPostprocessor.swift */,
+				46A38322201917DA0097FA36 /* Postprocessor.swift */,
 				46A3831D201917DA0097FA36 /* Anchors.swift */,
 				46A3833A201918780097FA36 /* Utility.swift */,
-				46A383362019180B0097FA36 /* SSDViewController.swift */,
+				46A383362019180B0097FA36 /* ViewController.swift */,
 				46A38338201918290097FA36 /* Main.storyboard */,
 				46A383102019175C0097FA36 /* Assets.xcassets */,
 				46A383122019175C0097FA36 /* LaunchScreen.storyboard */,
@@ -194,9 +194,9 @@
 				46A3832D201917DA0097FA36 /* Predictions.swift in Sources */,
 				46A3830A2019175C0097FA36 /* AppDelegate.swift in Sources */,
 				46A38333201917DA0097FA36 /* MLMultiArray+Image.swift in Sources */,
-				46A3832E201917DA0097FA36 /* SSDPostprocessor.swift in Sources */,
+				46A3832E201917DA0097FA36 /* Postprocessor.swift in Sources */,
 				46A3832C201917DA0097FA36 /* BoundingBox.swift in Sources */,
-				46A383372019180B0097FA36 /* SSDViewController.swift in Sources */,
+				46A383372019180B0097FA36 /* ViewController.swift in Sources */,
 				46A3832A201917DA0097FA36 /* UIImage+CVPixelBuffer.swift in Sources */,
 				46A38335201917FB0097FA36 /* ssd_mobilenet_feature_extractor.mlmodel in Sources */,
 				46A3832B201917DA0097FA36 /* Array.swift in Sources */,
@@ -338,7 +338,7 @@
 				DEVELOPMENT_TEAM = KLG734RE3M;
 				INFOPLIST_FILE = SSDMobileNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vonholst.SSDMob2123123123ileNetg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thirdeye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,7 +353,7 @@
 				DEVELOPMENT_TEAM = KLG734RE3M;
 				INFOPLIST_FILE = SSDMobileNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vonholst.SSDMob2123123123ileNetg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thirdeye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
