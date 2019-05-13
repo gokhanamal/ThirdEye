@@ -31,7 +31,7 @@
 
 /* Begin PBXFileReference section */
 		15E7430322882BB500C6CEBA /* rgb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rgb.txt; path = ../../../rgb.txt; sourceTree = "<group>"; };
-		46A383062019175C0097FA36 /* SSDMobileNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSDMobileNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46A383062019175C0097FA36 /* ThirdEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThirdEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A383092019175C0097FA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46A383102019175C0097FA36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46A383132019175C0097FA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		46A382FD2019175C0097FA36 = {
 			isa = PBXGroup;
 			children = (
-				46A383082019175C0097FA36 /* SSDMobileNet */,
+				46A383082019175C0097FA36 /* ThirdEye */,
 				46A383072019175C0097FA36 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,12 +76,12 @@
 		46A383072019175C0097FA36 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				46A383062019175C0097FA36 /* SSDMobileNet.app */,
+				46A383062019175C0097FA36 /* ThirdEye.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		46A383082019175C0097FA36 /* SSDMobileNet */ = {
+		46A383082019175C0097FA36 /* ThirdEye */ = {
 			isa = PBXGroup;
 			children = (
 				15E7430322882BB500C6CEBA /* rgb.txt */,
@@ -98,7 +98,7 @@
 				46A38324201917DA0097FA36 /* coco_labels_list.txt */,
 				46A38334201917FB0097FA36 /* ssd_mobilenet_feature_extractor.mlmodel */,
 			);
-			path = SSDMobileNet;
+			path = ThirdEye;
 			sourceTree = "<group>";
 		};
 		46A3831B201917DA0097FA36 /* CoreMLHelpers */ = {
@@ -120,9 +120,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		46A383052019175C0097FA36 /* SSDMobileNet */ = {
+		46A383052019175C0097FA36 /* ThirdEye */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 46A383182019175C0097FA36 /* Build configuration list for PBXNativeTarget "SSDMobileNet" */;
+			buildConfigurationList = 46A383182019175C0097FA36 /* Build configuration list for PBXNativeTarget "ThirdEye" */;
 			buildPhases = (
 				46A383022019175C0097FA36 /* Sources */,
 				46A383032019175C0097FA36 /* Frameworks */,
@@ -132,9 +132,9 @@
 			);
 			dependencies = (
 			);
-			name = SSDMobileNet;
+			name = ThirdEye;
 			productName = SSDMobileNet;
-			productReference = 46A383062019175C0097FA36 /* SSDMobileNet.app */;
+			productReference = 46A383062019175C0097FA36 /* ThirdEye.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -153,7 +153,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 46A383012019175C0097FA36 /* Build configuration list for PBXProject "SSDMobileNet" */;
+			buildConfigurationList = 46A383012019175C0097FA36 /* Build configuration list for PBXProject "ThirdEye" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -166,7 +166,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				46A383052019175C0097FA36 /* SSDMobileNet */,
+				46A383052019175C0097FA36 /* ThirdEye */,
 			);
 		};
 /* End PBXProject section */
@@ -363,7 +363,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		46A383012019175C0097FA36 /* Build configuration list for PBXProject "SSDMobileNet" */ = {
+		46A383012019175C0097FA36 /* Build configuration list for PBXProject "ThirdEye" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46A383162019175C0097FA36 /* Debug */,
@@ -372,7 +372,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46A383182019175C0097FA36 /* Build configuration list for PBXNativeTarget "SSDMobileNet" */ = {
+		46A383182019175C0097FA36 /* Build configuration list for PBXNativeTarget "ThirdEye" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46A383192019175C0097FA36 /* Debug */,
